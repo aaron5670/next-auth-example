@@ -7,7 +7,7 @@ import styles from './header.module.css'
 // rendering, and avoids any flash incorrect content on initial page load.
 export default () => {
   const [ session, loading ] = useSession()
-  
+
   return (
     <header>
       <noscript>
@@ -16,7 +16,7 @@ export default () => {
       <div className={styles.signedInStatus}>
         <p className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
           {!session && <>
-            <span className={styles.notSignedInText}>You are not signed in</span>
+            <span className={styles.notSignedInText}>Je bent niet ingelogd</span>
             <a
                 href={`/api/auth/signin`}
                 className={styles.buttonPrimary}
@@ -25,14 +25,14 @@ export default () => {
                   signIn();
                 }}
               >
-                Sign in
-              </a>
+                Inloggen
+            </a>
           </>}
           {session && <>
             <span style={{backgroundImage: `url(${session.user.image})` }} className={styles.avatar}/>
             <span className={styles.signedInText}>
-              <small>Signed in as</small><br/>
-              <strong>{session.user.email || session.user.name}</strong>
+              <small>Ingelogd als</small><br/>
+              <strong>{session.user.name || session.user.email}</strong>
               </span>
             <a
                 href={`/api/auth/signout`}
@@ -42,8 +42,8 @@ export default () => {
                   signOut();
                 }}
               >
-                Sign out
-              </a>
+                Uitloggen
+            </a>
           </>}
         </p>
       </div>
