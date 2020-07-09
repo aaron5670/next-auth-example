@@ -1,44 +1,18 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
-// For more information on options, go to 
+// For more information on options, go to
 // https://next-auth.js.org/configuration/options
 const options = {
   // https://next-auth.js.org/configuration/providers
   providers: [
     Providers.Email({
-      server: process.env.EMAIL_SERVER, 
+      server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
-    }),
-    Providers.Apple({
-      clientId: process.env.APPLE_ID,
-      clientSecret: { 
-        appleId: process.env.APPLE_ID,
-        teamId: process.env.APPLE_TEAM_ID,
-        privateKey: process.env.APPLE_PRIVATE_KEY,
-        keyId: process.env.APPLE_KEY_ID,
-      }
-    }),
-    Providers.Auth0({
-      clientId: process.env.AUTH0_ID,
-      clientSecret: process.env.AUTH0_SECRET,
-      domain: process.env.AUTH0_DOMAIN
-    }),
-    Providers.Facebook({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET
     }),
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
-    }),
-    Providers.Google({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
-    }),
-    Providers.Twitter({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET
     }),
   ],
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
@@ -58,14 +32,14 @@ const options = {
     // Use JSON Web Tokens for session instead of database sessions.
     // This option can be used with or without a database for users/accounts.
     // Note: `jwt` is automatically set to `true` if no database is specified.
-    jwt: true, 
-    
+    jwt: true,
+
     // Seconds - How long until an idle session expires and is no longer valid.
     // maxAge: 30 * 24 * 60 * 60, // 30 days
 
     // Seconds - Throttle how frequently to write to database to extend a session.
     // Use it to limit write operations. Set to 0 to always update the database.
-    // Note: This option is ignored if using JSON Web Tokens 
+    // Note: This option is ignored if using JSON Web Tokens
     // updateAge: 24 * 60 * 60, // 24 hours
   },
 
@@ -77,7 +51,7 @@ const options = {
     // The JWT secret is used to encrypt and sign the JWT.
     // It is auto-generated at startup if not specified.
     // secret: 'my-secret-123',
-      
+
     // Custom encode/decode functions for signing + encryption can be specified.
     // if you want to override what is in the JWT or how it is signed.
     // encode: async ({ secret, key, token, maxAge }) => {},
@@ -98,7 +72,7 @@ const options = {
 
   // Callbacks are asynchronous functions you can use to control what happens
   // when an action is performed.
-  // https://next-auth.js.org/configuration/callbacks 
+  // https://next-auth.js.org/configuration/callbacks
   callbacks: { },
 
   // Events are useful for logging
