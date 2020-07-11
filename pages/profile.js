@@ -1,3 +1,6 @@
+import React from "react";
+import {useSession, getSession} from 'next-auth/client'
+import AccessDenied from '../components/access-denied'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import Layout from "../components/layout";
@@ -13,6 +16,12 @@ ProfilePage.getInitialProps = async ({ req, query }) => {
 }
 
 function ProfilePage({ profile }) {
+    const [session, loading] = useSession()
+
+    if (!session) {
+        return <AccessDenied/>
+    }
+
     return (
         <Layout>
             <div>

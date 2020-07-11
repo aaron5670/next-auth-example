@@ -1,6 +1,9 @@
+import React from "react";
+import {useSession, getSession} from 'next-auth/client'
 import Layout from '../components/layout'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
+import AccessDenied from "../components/access-denied";
 
 HomePage.getInitialProps = async ({req}) => {
     const protocol = 'http:'
@@ -12,6 +15,12 @@ HomePage.getInitialProps = async ({req}) => {
 }
 
 function HomePage({users, page, pageCount}) {
+    const [session, loading] = useSession()
+
+    if (!session) {
+        return <AccessDenied/>
+    }
+
     return (
         <Layout>
             <ul>
